@@ -19,9 +19,8 @@ for ($i=0; $i<5; $i++){
 //var_dump($list->walkDoubleLink(DoubleLink::walk_backwards));
 var_dump($list->walkDoubleLink());
 
-
 $list->deleteNode(0);
+$list->deleteNode(4);
 
 var_dump($list->walkDoubleLink());
 
-var_dump($list->walkDoubleLink(DoubleLink::walk_backwards));

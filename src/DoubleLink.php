@@ -165,15 +165,22 @@ class DoubleLink
      * @return bool
      */
     public function deleteNode($message){
-        
+
         $node = $this->searchNode($message);
-        if ($node!=null && !$this->isFirst($node)){
+
+        if ($node!=null){
             $nodePrevious = $node->getPrevious();
             $nodeNext  = $node->getNext();
-            $nodePrevious->setNext($nodeNext);
+
+            if(!$this->isFirst($node)){
+                $nodePrevious->setNext($nodeNext);
+            } else $this->setFirst($nodeNext);
+
+
             if (!$this->isLast($node)) {
                 $nodeNext->setPrevious($nodePrevious);
-            }
+            } else $this->setLast($nodePrevious);
+            
             unset($node);
             return true;
         }
